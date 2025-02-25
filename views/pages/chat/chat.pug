@@ -1,0 +1,127 @@
+extends ../../layouts/default.pug 
+
+block main 
+  .my-container
+    .chat-menu 
+      .chat-menu-item 
+        i.fa-solid.fa-comment
+      .chat-menu-item 
+        i.fa-solid.fa-gift
+      .chat-menu-item 
+        i.fa-solid.fa-comment-dots
+      .chat-menu-item 
+        i.fa-solid.fa-trash
+        
+    .chat-list 
+      .chat-list-header 
+        .header-top 
+          .left 
+            h1 Đoạn chat
+          .right
+            span 
+              i.fa-solid.fa-plus
+        .header-search
+          form(action="")
+            input(type="text", placeholder="Tìm kiếm trên AppChat")
+      .chat-list-body 
+        .chat-item 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .chat-content 
+            .chat-info 
+              .user-name 
+                span Trần Văn Đức
+              .content 
+                p Bạn: Xin chào slkfskdhjfk sldkfhjksldjf  ơieuroue ưoeirujskdnkf, sdfknk sdolfj
+            .chat-time 
+              span 3 phút
+        .chat-item 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .chat-content 
+            .chat-info 
+              .user-name 
+                span Lê Thái Sơn
+              .content 
+                p Sơn đã gửi một nhãn dán.
+            .chat-time 
+              span 2 ngày
+        .chat-item 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .chat-content 
+            .chat-info 
+              .user-name 
+                span Đỗ Thị Hương
+              .content 
+                p Bạn: Đang làm gì vậy?.
+            .chat-time 
+              span 1 tuần
+        .chat-item 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .chat-content 
+            .chat-info 
+              .user-name 
+                span Phạm Thị Hương
+              .content 
+                p Bạn: Biết chưa?.
+            .chat-time 
+              span 1 tháng
+        .chat-item 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .chat-content 
+            .chat-info 
+              .user-name 
+                span Bùi Văn Hùng
+              .content 
+                p Bạn: Hello Hello Hello Hello Hello Hello Hello Hello Hellosdf lkshfksldhfskdfhk ksf ksfh 
+            .chat-time 
+              span 3 năm
+
+        
+    .chat-window
+      .chat-window-header 
+        .chat-window-header-left 
+          .avatar 
+            img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+          .user-info 
+            .user-name 
+              span Trần Văn Đức
+            .user-status 
+              span Đang hoạt động
+
+        .chat-window-header-right
+          .item.call
+            span 
+              i.fa-solid.fa-phone
+          .item.video-call 
+            span
+              i.fa-solid.fa-video
+          .item.more
+            span 
+              i.fa-solid.fa-ellipsis
+            
+      .chat-window-body(my-id=user.id)
+        each chat in chats 
+          - if (chat.user_id != user.id)
+            .chat-item.messages-receive
+              .avatar 
+                img(src="https://i.pinimg.com/originals/7b/7b/7b/")
+              .chat-content
+                .user-name 
+                  span #{chat.inforUser}
+                .content
+                  p #{chat.content}
+          - else 
+            .chat-item.messages-send
+              .chat-content
+                .content
+                  p #{chat.content}
+      .chat-window-footer 
+        form#form-send-messages(action="")
+          emoji-picker(emoji-version="15.0")
+          input(type="text", placeholder="Aa" name="message")
+          button  
+            i.fa-solid.fa-paper-plane
